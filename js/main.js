@@ -1,7 +1,7 @@
 // Create a map object.
 var mymap = L.map('map', {
-  center: [46, -122],
-  zoom: 3,
+  center: [39, -98],
+  zoom: 5,
   maxZoom: 10,
   minZoom: 4,
   detectRetina: true
@@ -47,8 +47,27 @@ function style_case(feature) {
 var case_rate;
 case_rate = L.geoJson.ajax("assets/new-case-rate.geojson", {
   style: style_case,
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup(
+      '<p>County: ' + feature.properties.county + ', ' + feature.properties.state + '<br>Incidence Rate: ' + Math.round(feature.properties.new_case_rate * 100) / 100 + ' cases per 1,000 residents</p>'
+    );
+    layer.on('mouseover', function(e) {
+      this.openPopup();
+      this.setStyle({
+        color: 'blue',
+        opacity: 0.6,
+        weight: 3
+      });
+    });
+    layer.on('mouseout', function(e) {
+      this.closePopup();
+      case_rate.resetStyle(e.target);
+    });
+  },
   attribution: 'COVID-19 Case Data &copy; the New York Times | U.S. Counties &copy; U.S. Census Bureau | Base Map &copy; CartoDB | Made By Steven Bao'
 }).addTo(mymap);
+
+
 
 
 // Create Leaflet Control Object for Legend
