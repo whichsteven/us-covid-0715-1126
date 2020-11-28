@@ -49,7 +49,7 @@ case_rate = L.geoJson.ajax("assets/new-case-rate.geojson", {
   style: style_case,
   onEachFeature: function(feature, layer) {
     layer.bindPopup(
-      '<p>County: ' + feature.properties.county + ', ' + feature.properties.state + '<br>Incidence Rate: ' + Math.round(feature.properties.new_case_rate * 100) / 100 + ' cases per 1,000 residents</p>'
+      '<p>County: ' + feature.properties.county + ', ' + feature.properties.state + '<br>Incidence Rate: '+Math.round(feature.properties.new_case_rate * 100) / 100 + ' cases per 1,000 residents<br>County Population: '+parseInt(feature.properties.pop18).toLocaleString()+'</p>'
     );
     layer.on('mouseover', function(e) {
       this.openPopup();
@@ -64,7 +64,7 @@ case_rate = L.geoJson.ajax("assets/new-case-rate.geojson", {
       case_rate.resetStyle(e.target);
     });
   },
-  attribution: 'COVID-19 Case Data &copy; the New York Times | U.S. Counties &copy; U.S. Census Bureau | Base Map &copy; CartoDB | Made By Steven Bao'
+  attribution: 'COVID-19 Case Data &copy; the New York Times | ACS 2014-2018 5-Year Population Estimates &copy; U.S. Census Bureau | U.S. Counties &copy; U.S. Census Bureau | Base Map &copy; CartoDB | Made By Steven Bao'
 }).addTo(mymap);
 
 
