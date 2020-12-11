@@ -64,7 +64,7 @@ case_rate = L.geoJson.ajax("assets/new-case-rate.geojson", {
       case_rate.resetStyle(e.target);
     });
   },
-  attribution: 'COVID-19 Case Data &copy; the New York Times | ACS 2014-2018 5-Year Population Estimates &copy; U.S. Census Bureau | U.S. Counties &copy; U.S. Census Bureau | Base Map &copy; CartoDB | Made By Steven Bao'
+  attribution: "<a href='https://github.com/nytimes/covid-19-data' target='_blank'>COVID-19 Case Data &copy; the New York Times</a> | <a href='https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html' target='_blank'>U.S. Counties &copy; U.S. Census Bureau</a> | Base Map &copy; CartoDB | Made By Steven Bao"
 }).addTo(mymap);
 
 
